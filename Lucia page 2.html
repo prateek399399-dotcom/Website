@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz page</title>
+        <link rel="stylesheet" href="Lucia style.css">
+    </head>
+    <body>
+        <h1>Lucia Quiz</h1>
+        <hr>
+
+        <form action="Lucia marks.html" method="get">
+            <div class="question">
+                <label for="faction">1. Which faction does Lucia belong to?</label>
+                <select id="faction" name="faction">
+                    <option value="">Choose an answer</option>
+                    <option value="babylonia">Babylonia</option>
+                    <option value="ascendants">Ascendants</option>
+                    <option value="church">Church of Machina</option>
+                </select>
+            </div>
+
+            <div class="question">
+                <label>2. What is Lucia's current frame?</label>
+                <label><input type="radio" name="frame" value="lotus"> Lotus</label>
+                <label><input type="radio" name="frame" value="dawn"> Dawn</label>
+                <label><input type="radio" name="frame" value="plume"> Plume</label>
+                <label><input type="radio" name="frame" value="pyroath"> Pyroath</label>
+            </div>
+
+            <div class="question">
+                <label for="sister">3. What is the name of Lucia's sister?</label>
+                <input type="text" id="sister" name="sister" placeholder="Type your answer">
+            </div>
+
+            <div class="question">
+                <label for="reason">4. Why was a copy of Lucia created by Babylonia?</label>
+                <textarea id="reason" name="reason" rows="4" placeholder="Explain in your own words"></textarea>
+            </div>
+
+            <button type="submit">Submit answers</button>
+        </form>
+
+        <br><br>
+        <a href="Lucia.html">
+            <button type="button">Back to main page</button>
+        </a>
+    </body>
+</html>

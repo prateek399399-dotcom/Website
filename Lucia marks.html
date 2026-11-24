@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucia Quiz Results</title>
+    <link rel="stylesheet" href="Lucia style.css">
+</head>
+<body onload="showMarks()">
+    <h1>Lucia Quiz Results</h1>
+    <hr>
+
+    <div class="result-box">
+        <div>Total Marks</div>
+        <div class="score" id="score">0 / 4</div>
+        <div class="percentage" id="percentage">0%</div>
+    </div>
+
+    <div class="result-list" id="resultList"></div>
+
+    <div style="text-align: center;">
+        <a href="Lucia page 2.html">
+            <button type="button">Try Again</button>
+        </a>
+        <a href="Lucia.html">
+            <button type="button">Back to Home</button>
+        </a>
+    </div>
+
+    <script>
+        function showMarks() {
+            const params = new URLSearchParams(window.location.search);
+
+            const correctAnswers = {
+                faction: 'babylonia',
+                frame: 'pyroath',
+                sister: 'luna',
+                reason: 'to fill the gap left by the original lucia'
+            };
+
+            let score = 0;
+            const results = [];
+
+            const userFaction = (params.get('faction') || '').toLowerCase().trim();
+            const userFrame = (params.get('frame') || '').toLowerCase().trim();
+            const userSister = (params.get('sister') || '').toLowerCase().trim();
+            const userReason = (params.get('reason') || '').toLowerCase().trim();
+
+            const q1 = userFaction === correctAnswers.faction;
+            const q2 = userFrame === correctAnswers.frame;
+            const q3 = userSister === correctAnswers.sister;
+            const q4 = userReason.includes('fill') && userReason.includes('gap') && userReason.includes('original');
+
+            if (q1) score++;
+            if (q2) score++;
+            if (q3) score++;
+            if (q4) score++;
+
+            results.push({label: 'Q1: Faction', status: q1, correct: 'Babylonia'});
+            results.push({label: 'Q2: Current frame', status: q2, correct: 'Pyroath'});
+            results.push({label: 'Q3: Sister', status: q3, correct: 'Luna'});
+            results.push({label: 'Q4: Why was a copy created?', status: q4, correct: 'To fill the gap left by the original Lucia'});
+
+            document.getElementById('score').textContent = score + ' / 4';
+            document.getElementById('percentage').textContent = Math.round((score / 4) * 100) + '%';
+
+            const resultList = document.getElementById('resultList');
+            resultList.innerHTML = results.map(item => {
+                const itemClass = item.status ? 'correct' : 'wrong';
+                const answerText = item.status ? 'Correct' : 'Incorrect';
+                return `<div class="result-item ${itemClass}"><strong>${item.label}</strong> - ${answerText} (${item.correct})</div>`;
+            }).join('');
+        }
+    </script>
+</body>
+</html>
